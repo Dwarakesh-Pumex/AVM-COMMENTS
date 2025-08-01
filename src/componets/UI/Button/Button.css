@@ -1,0 +1,55 @@
+.Button-root {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-sizing: border-box;
+}
+
+.Button-root:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.Button-primary {
+  background-color: #425ED9;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 6px;
+}
+
+.Button-primary:hover:not(:disabled) {
+  background-color: #425ED9;
+  transform: scale(1.02);
+}
+
+.Button-secondary {
+  background-color: #ffffff;
+  border: 1px solid #425ED9;
+  color: #425ED9;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 4px;
+}
+
+.Button-secondary:hover:not(:disabled) {
+  background-color: #ffffff;
+  transform: scale(1.02);
+}
+
+.Button-tertiary {
+  background-color: transparent;
+  color: #007bff;
+  font-size: 0.9rem;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+}
+
+.Button-tertiary:hover:not(:disabled) {
+  background-color: #e7f1ff;
+  transform: scale(1.02);
+}

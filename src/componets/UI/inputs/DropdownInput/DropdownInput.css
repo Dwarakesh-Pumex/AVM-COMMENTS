@@ -1,0 +1,21 @@
+.DropdownInput {
+  width: 100%;
+  background-color: #EDF5F4;
+  color: #9EA3A2;
+  padding: 15px;
+  font-size: 14px;
+  font-weight: 300;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.DropdownInput:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.DropdownInput:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}

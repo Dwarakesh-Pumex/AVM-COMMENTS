@@ -1,0 +1,9 @@
+.comment-block
+{
+    display: flex;
+    flex-direction: row;
+    width:auto;
+    height:45px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}

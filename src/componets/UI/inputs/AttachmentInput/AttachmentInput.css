@@ -1,0 +1,118 @@
+.attachment-input-wrapper {
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #EDF5F4;
+}
+.attachment-title{
+  margin: 0;
+  font-weight: 800;
+  color: black;
+}
+
+.attachment-info{
+  margin: 0;
+}
+
+.attachment-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #555;
+  padding: 40px;
+}
+
+.attachment-upload-icon {
+  width: 40px;
+  height: 40px;
+  color: #002aff;
+  margin: 0;
+}
+
+.browse-btn {
+  background-color: #425ED9;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.preview-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.preview-controls {
+  /* translate: 0 -85px; */
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.preview-controls button {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Base style for Upload All button */
+.upload-all-btn {
+  display: inline-flex;
+  margin-top: 10px;
+  align-items: center;
+  gap: 8px; /* space between icon and text */
+  background-color: #007bff; /* primary blue */
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover effect */
+.upload-all-btn:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+
+.upload-all-btn:disabled {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.upload-all-btn:focus {
+  outline: 2px solid #80bdff;
+  outline-offset: 2px;
+}
+
+.upload-all-btn svg {
+  width: 16px;
+  height: 16px;
+}

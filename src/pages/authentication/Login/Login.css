@@ -1,0 +1,163 @@
+.login-main-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.login-left-div {
+    width: 62%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-right-div {
+    width: 38%;
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.login-copyright-text {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.login-box-container {
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.login-logo {
+    width: 60%;
+    object-fit: contain;
+}
+
+.welcome-text {
+    color: #0A1C80;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+.login-form-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login-form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #000;
+}
+
+.forgot-password {
+    width: fit-content;
+    color: #9EA3A2;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #425ED9;
+}
+
+.login-button {
+    margin-top: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    background-color: #425ED9;
+    border: none;
+    color: white;
+}
+
+.keep-logged-in {
+    color: #9EA3A2;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.keep-logged-in-checkbox {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: #EDF5F4;
+    border: 1px solid #9EA3A2;
+    border-radius: 3px;
+    margin-right: 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+.keep-logged-in-checkbox:checked {
+    background-color: #425ED9;
+    border-color: #425ED9;
+}
+
+.keep-logged-in-checkbox:checked::after {
+    content: '\2713';
+    color: #EDF5F4;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.validation-error {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.error {
+  border-color: #e74c3c;
+}
+
+
+.error-message {
+  color: #e74c3c;
+  background-color: #fdf2f2;
+  border: 1px solid #e74c3c;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}

@@ -1,0 +1,24 @@
+.TextArea-input {
+  width: 100%;
+  background-color: #EDF5F4;
+  color: #000;
+  padding: 15px;
+  font-size: 14px;
+  font-family: 'Nunito';
+  font-weight: 400;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+.TextArea-input::placeholder{
+  color: #888;
+  
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.TextArea-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
