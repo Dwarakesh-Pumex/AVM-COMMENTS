@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Profile.css";
 import PageHeader from "../../../componets/UI/PageHeader/PageHeader";
 import ProfileIcon from '../../../assets/images/header/searchbar_profile-icon.svg';
-import TextInput from "../../../componets/UI/inputs/TextInput/TextInput";
+import TextInput from "../../../componets/forms/inputs/TextInput/TextInput";
 import { fetchUser } from "../../../apis/profile";
 import type { Users } from "../../../types/users";
 import Sidebar from "../../../componets/UI/Sidebar/Sidebar";

@@ -12,7 +12,8 @@ import Cookies from "js-cookie";
 import ResetPassword from "./pages/authentication/ResetPassword/ResetPassword";
 import ForgotPassword from "./pages/authentication/ForgotPassword/ForgotPassword";
 import ChangePassword from "./pages/authentication/ChangePassword/ChangePassword";
-import CommentManagment from "./pages/CustomerManagement/CommentManagement";
+import CommentManagment from "./pages/commentManagement/CommentManagement";
+import DefaultPage from "./pages/default/defaultPage";
 
 function App() {
   const navigate = useNavigate();
@@ -97,6 +98,7 @@ function App() {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/change-password" element={<ChangePassword />} />
       <Route path="/comment-page" element={<CommentManagment />} />
+      <Route path = "/default-page" element={<DefaultPage />} />
     </Routes>
   );
 }

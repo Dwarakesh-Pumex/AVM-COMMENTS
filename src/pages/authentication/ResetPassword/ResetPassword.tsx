@@ -5,7 +5,7 @@ import './ResetPassword.css';
 import { useState, type FormEvent } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { resetPassword } from '../../../apis/resetPassword';
-import PasswordInput from '../../../componets/UI/inputs/PasswordInput/PasswordInput';
+import PasswordInput from '../../../componets/forms/inputs/PasswordInput/PasswordInput';
 
 // Define the error type
 interface ApiError {

@@ -1,20 +1,19 @@
-import CommentSendBar from "../../componets/UI/CommentSendBar/CommentSendBar";
+import "./DefaultPage.css";
 import Sidebar from "../../componets/UI/Sidebar/Sidebar";
-import "./CommentManagement.css";
-function CommentManagement() {
+
+function AdminDashboard() {
+
+
   return (
     <div className="default-page-main-container">
       <div className="default-page-left-div">
         <Sidebar />
       </div>
       <div className="default-page-right-div">
-        <div className="footer">
-        <CommentSendBar/>
-        </div>
+        <span>The page is not accessible!</span>
       </div>
-      
     </div>
   );
 }
 
-export default CommentManagement;
+export default AdminDashboard;

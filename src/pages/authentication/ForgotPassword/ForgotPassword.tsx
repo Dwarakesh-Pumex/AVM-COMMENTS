@@ -1,7 +1,7 @@
 import backgroundImage from '../../../assets/images/authentication/forgotPassword-background.png';
 import Logo from '../../../assets/images/logo.svg';
 import './ForgotPassword.css';
-import TextInput from '../../../componets/UI/inputs/TextInput/TextInput';
+import TextInput from '../../../componets/forms/inputs/TextInput/TextInput';
 import { useState, type FormEvent } from 'react';
 import { forgotPassword } from '../../../apis/forgotPassword';
 import { useNavigate } from 'react-router-dom';

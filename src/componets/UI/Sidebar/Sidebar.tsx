@@ -49,7 +49,7 @@ const supervisorMenuItems: MenuItem[] = [
   { name: 'Dashboard', icon: DashboardIcon, iconHover: DashboardIconHover, iconSelected: DashboardIconSelected, path: '/supervisor-dashboard', additionalPaths: ['/change-password', '/profile']  },
   { name: 'Incidents', icon: IncidentsIcon, iconHover: IncidentsIconHover, iconSelected: IncidentsIconSelected, path: '/supervisor-incidents-list' },
   { name: 'Playbacks', icon: PlaybacksIcon, iconHover: PlaybacksIconHover, iconSelected: PlaybacksIconSelected, path: '/default-page' },
-  { name: 'Comments', icon: CommentsIcon, iconHover: CommentsIconHover, iconSelected: CommentsIconSelected, path: '/default-page' },
+  { name: 'Comments', icon: CommentsIcon, iconHover: CommentsIconHover, iconSelected: CommentsIconSelected, path: '/comment-page' },
 ];
 
 const staffMenuItems: MenuItem[] = [
@@ -62,7 +62,7 @@ const customerMenuItems: MenuItem[] = [
   { name: 'Dashboard', icon: DashboardIcon, iconHover: DashboardIconHover, iconSelected: DashboardIconSelected, path: '/customer-dashboard', additionalPaths: ['/change-password', '/profile']  },
   { name: 'Incidents', icon: IncidentsIcon, iconHover: IncidentsIconHover, iconSelected: IncidentsIconSelected, path: '/customer-incidents-list' },
   { name: 'Playbacks', icon: PlaybacksIcon, iconHover: PlaybacksIconHover, iconSelected: PlaybacksIconSelected, path: '/default-page' },
-  { name: 'Comments', icon: CommentsIcon, iconHover: CommentsIconHover, iconSelected: CommentsIconSelected, path: '/default-page' },
+  { name: 'Comments', icon: CommentsIcon, iconHover: CommentsIconHover, iconSelected: CommentsIconSelected, path: '/comment-page' },
 ];
 
 const Sidebar: React.FC = () => {

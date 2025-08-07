@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./ChangePassword.css";
 import PageHeader from "../../../componets/UI/PageHeader/PageHeader";
 import Sidebar from "../../../componets/UI/Sidebar/Sidebar";
-import PasswordInput from '../../../componets/UI/inputs/PasswordInput/PasswordInput';
+import PasswordInput from '../../../componets/forms/inputs/PasswordInput/PasswordInput';
 import Button from '../../../componets/UI/Button/Button';
 import { changePassword } from "../../../apis/changePassword";
 import type { ChangePasswordRequest } from "../../../types/changePassword";

@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import backgroundImage from '../../../assets/images/authentication/login-background2.png';
 import Logo from '../../../assets/images/logo.svg';
 import './Login.css';
-import TextInput from '../../../componets/UI/inputs/TextInput/TextInput';
-import PasswordInput from '../../../componets/UI/inputs/PasswordInput/PasswordInput';
+import TextInput from '../../../componets/forms/inputs/TextInput/TextInput';
+import PasswordInput from '../../../componets/forms/inputs/PasswordInput/PasswordInput';
 import { login } from '../../../apis/login/index';
 import Cookies from 'js-cookie';
 
@@ -100,13 +100,13 @@ function Login() {
         Cookies.set('refreshToken', response.refreshToken, cookieOptions);
         Cookies.set('role', response.role, cookieOptions);
         Cookies.set('fullname', response.fullname, cookieOptions);
-        Cookies.set('username', response.username, cookieOptions); // Store username for refresh
+        Cookies.set('username', response.username, cookieOptions); 
       } else {
         Cookies.set('accessToken', response.accessToken);
         Cookies.set('refreshToken', response.refreshToken);
         Cookies.set('role', response.role);
         Cookies.set('fullname', response.fullname);
-        Cookies.set('username', response.username); // Store username for refresh
+        Cookies.set('username', response.username); 
       }
 
       console.log('Login successful:', response);

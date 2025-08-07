@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: row;
     background-color: #F4F7FE;
+    
 }
 
 .default-page-left-div {
@@ -19,11 +20,9 @@
     width: 85%; 
     margin-left: 15%;
     padding: 30px;
-    overflow: hidden;
-}
-
-.default-page-right-div span {
-    color: #0A1C80;
+    display: flex;
+    flex-direction: column;
+    height: auto;
 }
 
 
@@ -101,9 +100,16 @@
   font-size: 16px;
 }
 
+.footer-holder{
+  width: auto;
+  background-color: #F4F7FE;
+  height: 38px;
+}
+
+
 .footer{
-  display: flex;
-  flex-direction: column;
-  align-content: flex-end;
-  justify-content: flex-end;
+    bottom: 12px;
+    padding: 0;
+    width: 80%;
+    position: fixed;
 }
