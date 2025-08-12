@@ -54,9 +54,9 @@ function CommentSendBar({
     }
   };
 
-//   const handleRemoveAllFile = () => {
-//     setSelectedFiles([]);
-//   };
+  //   const handleRemoveAllFile = () => {
+  //     setSelectedFiles([]);
+  //   };
 
   const handleRemoveFile = (index: number) => {
     setSelectedFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
@@ -75,29 +75,26 @@ function CommentSendBar({
         return;
       }
 
-
       const uploadedUrls: string[] = [];
       for (const file of selectedFiles) {
         const url = await uploadIncidentAttachment(file);
         uploadedUrls.push(String(url));
       }
 
-     
-      const allUrls = [...uploadedUrls,...(selectedUrls || [])];
-      console.log(allUrls)
-      console.log(currentIncidentId)
-      console.log(editCommentId)
-      console.log(message)
+      const allUrls = [...uploadedUrls, ...(selectedUrls || [])];
+      console.log(allUrls);
+      console.log(currentIncidentId);
+      console.log(editCommentId);
+      console.log(message);
       if (editCommentId) {
-        
         await updateComment(
           currentIncidentId,
           editCommentId,
-          message,
+          `Edited: ${message}`,
           "ACTIVE",
           "PENDING",
           allUrls
-        )
+        );
       } else {
         await postComments(
           currentIncidentId,
@@ -196,7 +193,7 @@ function CommentSendBar({
           disabled={sendButtonState}
           onClick={handleSendClick}
         >
-          {editCommentId? "Update" : "Send"}
+          {editCommentId ? "Update" : "Send"}
         </button>
 
         <button
