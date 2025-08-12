@@ -43,7 +43,7 @@ export const postComments = async (
         comments,
         status,
         stage,
-        attachments
+        attachments,
     };
 
     const response = await apiClient.post<Comments>(
@@ -64,5 +64,38 @@ export const deleteComments = async (
     );
     return response.data;
 }
+
+
+export const updateComment = async (
+  incidentId: number,
+  commentId: number,
+  comments: string,
+  status: string = "ACTIVE",
+  stage: string = "PENDING",
+  attachmentURLs: string[] = []
+): Promise<Comments> => {
+  const attachments = attachmentURLs.map(url => ({
+    status: "ACTIVE",
+    attachmentURL: url
+  }));
+
+  const requestBody = {
+    id:commentId,
+    comments,
+    status,
+    stage,
+    attachments
+  };
+
+  const response = await apiClient.put<Comments>(
+    `/incidents/${incidentId}/comment`,
+    requestBody
+  );
+
+  return response.data;
+};
+
+
+
 
 

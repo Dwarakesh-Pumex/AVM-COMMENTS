@@ -10,11 +10,14 @@ function CommentManagement() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const [comments, setComments] = useState<any>([]);
   const [currentIncidentId, setCurrentIncidentId] = useState(4);
+  const [editingId, setEditingId] = useState(0);
+  const [initialMessage, setInitialMessage] = useState("");
+  const [initialAttachments, setInitialAttachments] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setCurrentIncidentId(4);
-  },[currentIncidentId])
-  
+  }, [currentIncidentId]);
+
   const buttons = [
     { label: "Back", onClick: () => console.log("Back") },
     { label: "End Session", onClick: () => console.log("End Session") },
@@ -26,36 +29,34 @@ function CommentManagement() {
   ];
 
   const loadComments = async () => {
-  try {
-    const response = await fetchComments(currentIncidentId);
-    const content = Array.isArray(response.content) ? response.content : [];
+    try {
+      const response = await fetchComments(currentIncidentId);
+      const content = Array.isArray(response.content) ? response.content : [];
 
-    const mappedComments = content.map((item: any) => ({
-      messageSender: item.user?.fullName || "Unknown",
-      messageSenderUserName: item.user?.username || "Unknown",
-      message: item.comments,
-      dateAndTime: item.createdDate,
-      commentId: item.id,
-      role: "ROLE_ADMIN",
-      attachmentfiles: Array.isArray(item.attachments)
-        ? item.attachments.map((attachment: any) => attachment.attachmentURL)
-        : [],
-    }));
+      const mappedComments = content.map((item: any) => ({
+        messageSender: item.user?.fullName || "Unknown",
+        messageSenderUserName: item.user?.username || "Unknown",
+        message: item.comments,
+        dateAndTime: item.createdDate,
+        commentId: item.id,
+        role: "ROLE_ADMIN",
+        attachmentfiles: Array.isArray(item.attachments)
+          ? item.attachments.map((attachment: any) => attachment.attachmentURL)
+          : [],
+      }));
 
-    setComments(mappedComments);
-  } catch (error) {
-    console.error("Failed to fetch comments:", error);
-  }
-};
+      setComments(mappedComments);
+    } catch (error) {
+      console.error("Failed to fetch comments:", error);
+    }
+  };
 
-
-useEffect(() => {
-  const interval = setInterval(() => {
-    loadComments();
-  }, 5000);
-  return () => clearInterval(interval);
-}, [currentIncidentId]);
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadComments();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [currentIncidentId]);
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -63,7 +64,6 @@ useEffect(() => {
     }
     loadComments();
   }, [currentIncidentId]);
-
 
   return (
     <div className="default-page-main-container">
@@ -91,25 +91,41 @@ useEffect(() => {
             role={comment.role}
             attachments={comment.attachmentfiles}
             onDeleteClick={async () => {
-              const response = await deleteComments(currentIncidentId, comment.commentId);
+              const response = await deleteComments(
+                currentIncidentId,
+                comment.commentId
+              );
               console.log(response);
               await loadComments();
-            }
-           }
-            onEditClick={async () => {  
+            }}
+            onEditClick={async () => {
               console.log("edit Comment");
-              await loadComments();
-            }
-          }
+              setEditingId(comment.commentId);
+              setInitialMessage(comment.message);
+              setInitialAttachments(comment.attachmentfiles);
+            }}
           />
         ))}
 
         <div className="footer-holder"></div>
         <div className="footer">
-          <CommentSendBar 
-          currentIncidentId={currentIncidentId}
-          onMessageSent={loadComments}
-          />
+          {editingId ? (
+            <CommentSendBar
+              currentIncidentId={currentIncidentId}
+              editCommentId={editingId}
+              initialMessage={initialMessage}
+              initialAttachments={initialAttachments}
+              onMessageSent={loadComments}
+              onCancelEdit={() => setEditingId(0)}
+            />
+            
+          ) 
+          : (
+            <CommentSendBar
+              currentIncidentId={currentIncidentId}
+              onMessageSent={loadComments}
+            />
+          )}
         </div>
         <div ref={messagesEndRef}></div>
       </div>
