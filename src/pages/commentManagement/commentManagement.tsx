@@ -3,41 +3,67 @@ import Comments from "../../componets/cards/commentsNote/commentsNote";
 import CommentSendBar from "../../componets/forms/commentSendBar/commentSendBar";
 import Sidebar from "../../componets/UI/Sidebar/Sidebar";
 import "./CommentManagement.css";
-import { fetchComments } from "../../apis/comments/comments";
+import { deleteComments, fetchComments } from "../../apis/comments/comments";
+import PageHeader from "../../componets/UI/PageHeader/PageHeader";
 
 function CommentManagement() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const [comments, setComments] = useState<any>([]);
+  const [currentIncidentId, setCurrentIncidentId] = useState(4);
+
+  useEffect(()=>{
+    setCurrentIncidentId(4);
+  },[currentIncidentId])
+  
+  const buttons = [
+    { label: "Back", onClick: () => console.log("Back") },
+    { label: "End Session", onClick: () => console.log("End Session") },
+  ];
+
+  const stages = [
+    { id: "Report", label: "Reports", ariaLabel: "View Reports" },
+    { id: "Comments", label: "Comments", ariaLabel: "View Comments" },
+  ];
+
+  const loadComments = async () => {
+  try {
+    const response = await fetchComments(currentIncidentId);
+    const content = Array.isArray(response.content) ? response.content : [];
+
+    const mappedComments = content.map((item: any) => ({
+      messageSender: item.user?.fullName || "Unknown",
+      messageSenderUserName: item.user?.username || "Unknown",
+      message: item.comments,
+      dateAndTime: item.createdDate,
+      commentId: item.id,
+      role: "ROLE_ADMIN",
+      attachmentfiles: Array.isArray(item.attachments)
+        ? item.attachments.map((attachment: any) => attachment.attachmentURL)
+        : [],
+    }));
+
+    setComments(mappedComments);
+  } catch (error) {
+    console.error("Failed to fetch comments:", error);
+  }
+};
+
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    loadComments();
+  }, 5000);
+  return () => clearInterval(interval);
+}, [currentIncidentId]);
+
 
   useEffect(() => {
     if (messagesEndRef.current) {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  
+    loadComments();
+  }, [currentIncidentId]);
 
-  const loadComments = async () => {
-    try {
-      const incidentId = 4;
-      const response = await fetchComments(incidentId);
-
-      const mappedComments = response.content.map((item:any) =>({
-          messageSender: item.user.fullname || "Unknown",
-          messageSenderUserName: item.user.username || "Unknown",
-          message: item.comments,
-          dateAndTime: item.createdDate,
-          role: "ROLE_ADMIN",
-          attachmentfiles : item.attachments.map((attachment:any) => attachment.attachmentURL)
-        }));
-        
-      setComments(mappedComments);
-
-      console.log("Comments fetched:", response);
-    } catch (error) {
-      console.error("Failed to fetch comments:", error);
-    }
-  };
-  loadComments();
-  },[]);
 
   return (
     <div className="default-page-main-container">
@@ -46,70 +72,44 @@ function CommentManagement() {
       </div>
 
       <div className="default-page-right-div">
-        
-        {comments.map((comment:any, index:number) => (
-        <Comments
-          key={index}
-          messageSender={comment.messageSender}
-          messageSenderUserName={comment.messageSenderUserName}
-          message={comment.message}
-          dateAndTime={comment.dateAndTime}
-          role={comment.role}
-          attachments={comment.attachmentfiles}
-        />
-       ))}
-
-       
-        <Comments
-          messageSender="Arun George"
-          messageSenderUserName="arun.george@pumexinfotech.com"
-          message="We noticed unusual activity around 3 AM. The security cameras seem to have captured some movement near the east entrance."
-          dateAndTime="2025-08-05T11:38:50.165Z"
-          role="ROLE_ADMIN"
-          attachments={["witness_proof.svg","another_proof.mov","https://avm-prod-bucket.s3.us-east-1.amazonaws.com/56a0908b-459f-4041-8d53-6fa6b4dda7c7-Snapshot (16).jpg","witness_statement.pdf"]}
+        <PageHeader
+          title="Comment Management"
+          stages={stages}
+          buttons={buttons}
+          showGridOption={false}
+          showHeaderRow1Only={false}
+          showSearchBar={false}
         />
 
-        <Comments
-          messageSender="Arun George"
-          messageSenderUserName="arun.george@pumexinfotech.com"
-          message="We noticed unusual activity around 3 AM. The security cameras seem to have captured some movement near the east entrance."
-          dateAndTime="2025-08-05T11:38:50.165Z"
-          role="ROLE_ADMIN"
-        />
-
-        <Comments
-          messageSender="Melanie"
-          messageSenderUserName="melanie@americanvirtualmonitoring.com"
-          message="We noticed unusual activity around 3 AM. The security cameras seem to have captured some movement near the east entrance.
-                 We noticed unusual activity around 3 AM. The security cameras seem to have captured some movement near the east entrance."
-          dateAndTime="2025-08-05T11:38:50.165Z"
-          role="ROLE_SUPERVISOR"
-        />
-
-        <Comments
-          messageSender="Revanth"
-          messageSenderUserName="reyvanth@abilytics.com"
-          message="We noticed unusual activity around 3 AM. The security cameras seem to have captured some movement near the east entrance.
-                 We noticed unusual activity around 3 AM. The security cameras seem to have captured some movement near the east entrance."
-          dateAndTime="2025-08-05T11:38:50.165Z"
-          role="ROLE_CUSTOMER"
-          attachments={["https://avm-prod-bucket.s3.us-east-1.amazonaws.com/56a0908b-459f-4041-8d53-6fa6b4dda7c7-Snapshot (16).jpg","Witness.pdf"]}
-        />
-
-        <Comments
-          messageSender="Revanth"
-          messageSenderUserName="reyvanth@abilytics.com"
-          message="We noticed unusual activity around 3 AM. The security cameras seem to have captured some movement near the east entrance.
-                 We noticed unusual activity around 3 AM. The security cameras seem to have captured some movement near the east entrance."
-          dateAndTime="2025-08-05T11:38:50.165Z"
-          role="ROLE_CUSTOMER"
-        />
-
-        
+        {comments.map((comment: any, index: number) => (
+          <Comments
+            key={index}
+            messageSender={comment.messageSender}
+            messageSenderUserName={comment.messageSenderUserName}
+            message={comment.message}
+            dateAndTime={comment.dateAndTime}
+            role={comment.role}
+            attachments={comment.attachmentfiles}
+            onDeleteClick={async () => {
+              const response = await deleteComments(currentIncidentId, comment.commentId);
+              console.log(response);
+              await loadComments();
+            }
+           }
+            onEditClick={async () => {  
+              console.log("edit Comment");
+              await loadComments();
+            }
+          }
+          />
+        ))}
 
         <div className="footer-holder"></div>
         <div className="footer">
-          <CommentSendBar />
+          <CommentSendBar 
+          currentIncidentId={currentIncidentId}
+          onMessageSent={loadComments}
+          />
         </div>
         <div ref={messagesEndRef}></div>
       </div>

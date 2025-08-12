@@ -14,6 +14,8 @@ type CommentsProps = {
   dateAndTime: string;
   role: string;
   attachments?: string[];
+  onDeleteClick?: () => void;
+  onEditClick?: () => void;
 };
 
 export default function Comments({
@@ -23,6 +25,8 @@ export default function Comments({
   dateAndTime,
   role,
   attachments,
+  onDeleteClick,
+  onEditClick,
 }: CommentsProps) {
   const [roleColor, setRoleColor] = useState("");
 
@@ -42,7 +46,7 @@ export default function Comments({
   return isCurrentUser ? (
     <div className="note-card-right" data-role={roleColor}>
       <div className="note-header">
-        <strong>current: {messageSender}</strong>
+        <strong>{messageSender}</strong>
         <div className="timestamp">
           <img src={dateicon} alt="dateicon" className="date-icon" />
           {dateConvert(dateAndTime)}
@@ -62,10 +66,10 @@ export default function Comments({
           <div></div>
         )}
         <div className="note-actions">
-          <button>
+          <button onClick={onEditClick}>
             <img src={editicon} alt="edit" />
           </button>
-          <button>
+          <button onClick={onDeleteClick}>
             <img src={deleteicon} alt="delete" />
           </button>
         </div>
@@ -74,7 +78,7 @@ export default function Comments({
   ) : (
     <div className="note-card-left" data-role={roleColor}>
       <div className="note-header">
-        <strong>other: {messageSender}</strong>
+        <strong>{messageSender}</strong>
         <div className="timestamp">
           <img src={dateicon} alt="dateicon" className="date-icon" />
           {dateConvert(dateAndTime)}

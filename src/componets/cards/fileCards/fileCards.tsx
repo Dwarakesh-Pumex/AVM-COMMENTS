@@ -1,5 +1,5 @@
 import "./fileCards.css"
-
+import unknownFileIcon from "../../../assets/images/fileCards/unknown-icon.svg";
 import pdfIcon from "../../../assets/images/fileCards/pdf-icon.svg";
 import imageIcon from "../../../assets/images/fileCards/image-icon.svg"
 import videoIcon from "../../../assets/images/fileCards/video-icon.svg"
@@ -14,8 +14,9 @@ export default function FileCards({ fileName }: fileCardsProps) {
   const getFileIcon = (filename: string): any => {
     const lower = filename.toLowerCase();
     if (lower.match(/\.(pdf)$/)) return pdfIcon;
-    if (lower.match(/\.(jpe?g|png|gif|webp|svg)$/)) return imageIcon;
-    if (lower.match(/\.(mp4|mov|avi)$/)) return videoIcon;
+    else if (lower.match(/\.(jpe?g|png|gif|webp|svg)$/)) return imageIcon;
+    else if (lower.match(/\.(mp4|mov|avi)$/)) return videoIcon;
+    else return unknownFileIcon;
   };
 
   const icon = getFileIcon(fileName);

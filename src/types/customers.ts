@@ -25,4 +25,5 @@ export interface Customers {
   updatedDate: number[] | null;
   status: string;
   customerId: string;
+  
 }

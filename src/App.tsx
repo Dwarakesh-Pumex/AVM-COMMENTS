@@ -12,8 +12,9 @@ import Cookies from "js-cookie";
 import ResetPassword from "./pages/authentication/ResetPassword/ResetPassword";
 import ForgotPassword from "./pages/authentication/ForgotPassword/ForgotPassword";
 import ChangePassword from "./pages/authentication/ChangePassword/ChangePassword";
-import CommentManagment from "./pages/commentManagement/CommentManagement";
+import CommentManagment from "./pages/commentManagement/commentManagement";
 import DefaultPage from "./pages/default/defaultPage";
+import AdminDashboard from "./pages/adminDashboard/adminDashboard";
 
 function App() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ function App() {
       "./logout",
       "./profile",
     ];
+
     const publicRoutes = [
       "/login",
       "/forgot-password",
@@ -99,6 +101,7 @@ function App() {
       <Route path="/change-password" element={<ChangePassword />} />
       <Route path="/comment-page" element={<CommentManagment />} />
       <Route path = "/default-page" element={<DefaultPage />} />
+      <Route path = "/admin-dashboard" element={<AdminDashboard />} />
     </Routes>
   );
 }

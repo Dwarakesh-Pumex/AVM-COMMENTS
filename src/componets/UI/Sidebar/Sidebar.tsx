@@ -36,12 +36,12 @@ interface MenuItem {
 }
 
 const adminMenuItems: MenuItem[] = [
-  { name: 'Dashboard', icon: DashboardIcon, iconHover: DashboardIconHover, iconSelected: DashboardIconSelected, path: '/admin-dashboard', additionalPaths: ['/default-page', '/change-password', '/profile'] },
+  { name: 'Dashboard', icon: DashboardIcon, iconHover: DashboardIconHover, iconSelected: DashboardIconSelected, path: '/admin-dashboard', additionalPaths: ['/change-password', '/profile'] },
   { name: 'Customers', icon: CustomerIcon, iconHover: CustomerIconHover, iconSelected: CustomerIconSelected, path: '/default-page' },
   { name: 'Properties', icon: PropertiesIcon, iconHover: PropertiesIconHover, iconSelected: PropertiesIconSelected, path: '/default-page' },
   { name: 'Users', icon: UsersIcon, iconHover: UsersIconHover, iconSelected: UsersIconSelected, path: '/default-page' },
-  { name: 'Incidents', icon: IncidentsIcon, iconHover: IncidentsIconHover, iconSelected: IncidentsIconSelected, path: '/admin-incidents-list', additionalPaths: ['/default-page', '/incident-detailed-page'] },
-  { name: 'Playbacks', icon: PlaybacksIcon, iconHover: PlaybacksIconHover, iconSelected: PlaybacksIconSelected, path: '/admin-playbacks-list' },
+  { name: 'Incidents', icon: IncidentsIcon, iconHover: IncidentsIconHover, iconSelected: IncidentsIconSelected, path: '/default-page', additionalPaths: ['/default-page', '/incident-detailed-page'] },
+  { name: 'Playbacks', icon: PlaybacksIcon, iconHover: PlaybacksIconHover, iconSelected: PlaybacksIconSelected, path: '/default-page' },
   { name: 'Comments', icon: CommentsIcon, iconHover: CommentsIconHover, iconSelected: CommentsIconSelected, path: '/comment-page' },
 ];
 

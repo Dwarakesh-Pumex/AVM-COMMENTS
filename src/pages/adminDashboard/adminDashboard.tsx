@@ -1,7 +1,7 @@
-import "./DefaultPage.css";
+import "./adminDashboard.css";
 import Sidebar from "../../componets/UI/Sidebar/Sidebar";
 
-function DefaultPage() {
+function adminDashboard() {
 
 
   return (
@@ -10,10 +10,10 @@ function DefaultPage() {
         <Sidebar />
       </div>
       <div className="default-page-right-div">
-        <span>The page is not accessible!</span>
+        <span>The page is accessible!</span>
       </div>
     </div>
   );
 }
 
-export default DefaultPage;
+export default adminDashboard;
