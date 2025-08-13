@@ -29,10 +29,9 @@ function CommentSendBar({
   const [selectedUrls, setSelectedUrls] = useState<string[]>([]);
   const [sendButtonState, setSendButtonState] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
   useEffect(() => {
     if (initialMessage) {
-      setMessage(initialMessage);
+      setMessage(initialMessage.substring(initialMessage.lastIndexOf(":") + 1));
     }
     if (initialAttachments) {
       setSelectedUrls(initialAttachments);
@@ -54,10 +53,6 @@ function CommentSendBar({
     }
   };
 
-  //   const handleRemoveAllFile = () => {
-  //     setSelectedFiles([]);
-  //   };
-
   const handleRemoveFile = (index: number) => {
     setSelectedFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
@@ -70,8 +65,12 @@ function CommentSendBar({
     try {
       setSendButtonState(true);
 
-      if (!message.trim()) {
-        console.warn("Cannot send empty comment");
+      if (
+        !message.trim() &&
+        selectedFiles.length === 0 &&
+        selectedUrls.length === 0
+      ) {
+        console.warn("Cannot send empty comment with no attachments");
         return;
       }
 
@@ -80,12 +79,18 @@ function CommentSendBar({
         const url = await uploadIncidentAttachment(file);
         uploadedUrls.push(String(url));
       }
+      
+     
+      const allUrls = [...(selectedUrls || []),...uploadedUrls ];
 
-      const allUrls = [...uploadedUrls, ...(selectedUrls || [])];
       console.log(allUrls);
+
       console.log(currentIncidentId);
+
       console.log(editCommentId);
+
       console.log(message);
+
       if (editCommentId) {
         await updateComment(
           currentIncidentId,
@@ -108,7 +113,7 @@ function CommentSendBar({
       setMessage("");
       setSelectedFiles([]);
       setSelectedUrls([]);
-
+      if (onCancelEdit) onCancelEdit();
       if (onMessageSent) {
         onMessageSent();
       }
