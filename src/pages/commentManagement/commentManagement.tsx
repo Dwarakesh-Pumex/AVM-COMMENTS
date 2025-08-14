@@ -14,6 +14,7 @@ function CommentManagement() {
   const [initialMessage, setInitialMessage] = useState("");
   const [initialAttachments, setInitialAttachments] = useState([]);
 
+
   useEffect(() => {
     setCurrentIncidentId(4);
   }, [currentIncidentId]);
@@ -56,7 +57,7 @@ function CommentManagement() {
       loadComments();
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentIncidentId]);
+  }, []);
 
   useEffect(() => {
     if (messagesEndRef.current) {

@@ -65,12 +65,9 @@ function CommentSendBar({
     try {
       setSendButtonState(true);
 
-      if (
-        !message.trim() &&
-        selectedFiles.length === 0 &&
-        selectedUrls.length === 0
-      ) {
-        console.warn("Cannot send empty comment with no attachments");
+      if (!message.trim()) {
+        console.warn("Cannot send empty comment");
+
         return;
       }
 
@@ -79,9 +76,8 @@ function CommentSendBar({
         const url = await uploadIncidentAttachment(file);
         uploadedUrls.push(String(url));
       }
-      
-     
-      const allUrls = [...(selectedUrls || []),...uploadedUrls ];
+
+      const allUrls = [...uploadedUrls, ...(selectedUrls || [])];
 
       console.log(allUrls);
 
